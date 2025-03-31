@@ -22,7 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{06ad2f93-8e36-49cf-b10f-94be2dfd42c9}</ProjectGuid>
-    <RootNamespace>sfPrisonBreak</RootNamespace>
+    <RootNamespace>sfmlPrisonBreak</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
