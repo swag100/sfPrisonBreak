@@ -19,6 +19,8 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
+            myGuy.handleEvent(event);
+
             if (event.type == sf::Event::Closed)
                 window.close();
         }
@@ -26,13 +28,15 @@ int main()
         //Update
         myGuy.update(dt);
 
+
+        //Begin drawing process
         window.clear();
 
         //Draw
     
         myGuy.draw(window);
 
-
+        //
         window.display();
 
     }
