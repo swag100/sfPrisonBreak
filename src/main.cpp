@@ -1,22 +1,21 @@
 #include <SFML/Graphics.hpp>
 #include "include/player.h"
 
-#include <iostream>
+// #include <iostream>
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(480, 360), "SFML works!", sf::Style::Close);
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
-    Player myGuy;
+    sf::Clock deltaClock;
 
-    myGuy.draw();
-
-    std::cout << myGuy.x << ' ' << myGuy.y;
+    Player myGuy(200, 200);
 
     while (window.isOpen())
     {
+        sf::Time dt = deltaClock.restart();
+
+        //Event handling
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -24,10 +23,18 @@ int main()
                 window.close();
         }
 
+        //Update
+        myGuy.update(dt);
+
         window.clear();
-        window.draw(shape);
+
+        //Draw
+    
+        myGuy.draw(window);
+
+
         window.display();
-        myGuy.update();
+
     }
 
     return 0;
