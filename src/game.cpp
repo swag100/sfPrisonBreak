@@ -4,13 +4,11 @@
 #include "player.h"
 #include <vector>
 
-Game::Game(sf::RenderWindow& newWindow) : window(newWindow) {}
-
-void Game::start()
+Game::Game(sf::RenderWindow& newWindow) : window(newWindow) 
 {
-    this->players.push_back(
+    /*players.push_back(
         Player(29, 200)
-    );
+    );*/
 }
 
 void Game::handleEvents() 
@@ -18,25 +16,25 @@ void Game::handleEvents()
 
     //Event handling
     sf::Event event;
-    while (this->window.pollEvent(event))
+    while (window.pollEvent(event))
     {
         //temp
-        for (Player aPlayer : this->players) 
-            aPlayer.handleEvent(event);
+        //for (Player player : players)
+            player.handleEvent(event);
 
         if (event.type == sf::Event::Closed) 
-            this->window.close();
+            window.close();
     }
 
 }
 
 void Game::update()
 {
-    float dt = deltaClock.restart().asSeconds();
+    float deltaTime = deltaClock.restart().asSeconds();
 
     //Update
-    for (Player aPlayer : this->players) 
-        aPlayer.update(dt);
+    //for (Player player : players)
+        player.update(deltaTime);
 
 }
 
@@ -44,24 +42,23 @@ void Game::draw()
 {
 
     //Begin drawing process
-    this->window.clear();
+    window.clear();
 
     //draw
-    for (Player aPlayer : this->players) 
-        aPlayer.draw(this->window);
+    //for (Player player : players) 
+        player.draw(window);
 
     // pygame display flip, i think this flips the buffer!
-    this->window.display();
+    window.display();
 
 }
 
 void Game::run()
 {
-    this->start();
-    while (this->window.isOpen())
+    while (window.isOpen())
     {
-        this->handleEvents();
-        this->update();
-        this->draw();
+        handleEvents();
+        update();
+        draw();
     }
 }

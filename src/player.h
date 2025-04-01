@@ -1,6 +1,6 @@
 #pragma once
 
-class Player 
+class Player
 {
 private:
 	sf::Vector2f position;

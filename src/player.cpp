@@ -5,13 +5,13 @@
 
 Player::Player(int x, int y)
 {
-	this->position = sf::Vector2f(x, y);
-	this->moveVector = sf::Vector2f(0, 0);
+	position = sf::Vector2f(x, y);
+	moveVector = sf::Vector2f(0, 0);
 
-	this->shape.setRadius(20.f);
-	this->shape.setFillColor(sf::Color::Green);
+	shape.setRadius(20.f);
+	shape.setFillColor(sf::Color::Green);
 
-	std::cout << "Player has been made at " << this->position.x << " " << this->position.y << '\n';
+	std::cout << "Player has been made at " << position.x << " " << position.y << '\n';
 };
 
 void Player::handleEvent(sf::Event& event)
@@ -26,21 +26,26 @@ void Player::handleEvent(sf::Event& event)
 void Player::update(float deltaTime)
 {
 	//
-	this->moveVector.x = (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) - sf::Keyboard::isKeyPressed(sf::Keyboard::Left));
-	this->moveVector.y = (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) - sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
+	moveVector.x =	sf::Keyboard::isKeyPressed(sf::Keyboard::Right) - 
+					sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+	moveVector.y =	sf::Keyboard::isKeyPressed(sf::Keyboard::Down) - 
+					sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
 
 	//apply move vector to position
-	this->position.x += this->moveVector.x * deltaTime;
-	this->position.y += this->moveVector.y * deltaTime;
+	position.x += moveVector.x * 200 * deltaTime;
+	position.y += moveVector.y * 200 * deltaTime;
 
 	//make changes visible to the user
 	// for some reason, shape is NOT changing position -- This function is being called though
-	this->shape.setPosition(this->position);
+	shape.setPosition(position.x , position.y);
 
-	//std::cout << "Player has been updated" << '\n';
+	// std::cout << "Player has been updated" << '\n
+
+	std::cout << position.x << " " << position.y << '\r';
+	//std::cout << deltaTime << '\n';
 }
 
 void Player::draw(sf::RenderWindow& window)
 {
-	window.draw(this->shape);
+	window.draw(shape);
 }

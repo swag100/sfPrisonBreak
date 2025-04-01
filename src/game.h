@@ -9,7 +9,8 @@ private:
 	sf::Clock deltaClock;
 
 	//temp
-	std::vector<Player> players;
+	//std::vector<Player> players;
+	Player player{28, 28};
 
 	void start();
 
@@ -18,8 +19,6 @@ private:
 	void draw();
 
 public:
-	bool done{};
-
-	Game(sf::RenderWindow& window);
+	Game(sf::RenderWindow& newWindow);
 	void run();
 };
