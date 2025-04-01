@@ -3,7 +3,8 @@
 
 class Game {
 private:
-	sf::RenderWindow window;
+	//IMPORTANT: AMPERSAND IS THERE TO DENOTE IT IS A REFERENCE (akin to python variables)
+	sf::RenderWindow& window;
 	sf::Clock deltaClock;
 
 	void start();
