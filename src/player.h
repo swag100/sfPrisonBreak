@@ -13,6 +13,6 @@ public:
 	
 	//Needs to know that these functions exist to be overwritten in player.cpp
 	void handleEvent(sf::Event& event);
-	void update(sf::Time& deltaTime);
+	void update(float deltaTime);
 	void draw(sf::RenderWindow& window);
 };

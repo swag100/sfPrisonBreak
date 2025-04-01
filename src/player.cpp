@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "include/player.h"
+#include "player.h"
 
 #include <iostream>
 
@@ -23,7 +23,7 @@ void Player::handleEvent(sf::Event& event)
 	} */
 }
 
-void Player::update(sf::Time& deltaTime)
+void Player::update(float deltaTime)
 {
 	//
 	this->moveVector.x = (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) - sf::Keyboard::isKeyPressed(sf::Keyboard::Left));

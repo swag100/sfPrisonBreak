@@ -1,11 +1,14 @@
 #include <SFML/Graphics.hpp>
-#include "include/player.h"
+#include "player.h"
+#include "game.h"
 
 // #include <iostream>
 
+// https://en.sfml-dev.org/forums/index.php?topic=17069.0
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(480, 360), "SFML works!", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(320, 240), "SFML works!", sf::Style::Close);
 
     sf::Clock deltaClock;
 
@@ -13,7 +16,7 @@ int main()
 
     while (window.isOpen())
     {
-        sf::Time dt = deltaClock.restart();
+        float dt = deltaClock.restart().asSeconds();
 
         //Event handling
         sf::Event event;
