@@ -8,7 +8,7 @@ Player::Player(int x, int y)
 	this->position = sf::Vector2f(x, y);
 	this->moveVector = sf::Vector2f(0, 0);
 
-	this->shape.setRadius(100.f);
+	this->shape.setRadius(20.f);
 	this->shape.setFillColor(sf::Color::Green);
 
 	std::cout << "Player has been made at " << this->position.x << " " << this->position.y << '\n';
@@ -34,7 +34,8 @@ void Player::update(float deltaTime)
 	this->position.y += this->moveVector.y * deltaTime;
 
 	//make changes visible to the user
-	this->shape.setPosition(sf::Vector2f(this->position.x, this->position.y));
+	// for some reason, shape is NOT changing position -- This function is being called though
+	this->shape.setPosition(this->position);
 
 	//std::cout << "Player has been updated" << '\n';
 }
