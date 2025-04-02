@@ -9,19 +9,14 @@ Player::Player(int x, int y)
 	moveVector = sf::Vector2f(0, 0);
 
 	shape.setRadius(20.f);
-	shape.setFillColor(sf::Color::Green);
+	shape.setFillColor(sf::Color::Transparent);
+	shape.setOutlineColor(sf::Color::Green);
+	shape.setOutlineThickness(1);
 
 	std::cout << "Player has been made at " << position.x << " " << position.y << '\n';
 };
 
-void Player::handleEvent(sf::Event& event)
-{
-	/*
-	if (event.type == sf::Event::KeyPressed)
-	{
-		std::cout << event.key.code << std::endl;
-	} */
-}
+void Player::handleEvent(sf::Event& event) {}
 
 void Player::update(float deltaTime)
 {
@@ -45,7 +40,7 @@ void Player::update(float deltaTime)
 	//std::cout << deltaTime << '\n';
 }
 
-void Player::draw(sf::RenderWindow& window)
+void Player::draw(sf::RenderTexture& buffer)
 {
-	window.draw(shape);
+	buffer.draw(shape);
 }

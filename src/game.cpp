@@ -1,56 +1,51 @@
 #include "game.h"
 
-//temp -- move this stuff into a state class soon
-#include "player.h"
-#include <vector>
-
-Game::Game(sf::RenderWindow& newWindow) : window(newWindow) 
+Game::Game()
 {
-    /*players.push_back(
-        Player(29, 200)
-    );*/
+	//Set up window and buffer
+    window.setView(view);
+
+    //
+    buffer.create(bufferSize.x, bufferSize.y);
+	bufferSprite.setTexture(buffer.getTexture());
 }
 
 void Game::handleEvents() 
 {
-
     //Event handling
     sf::Event event;
-    while (window.pollEvent(event))
-    {
-        //temp
-        //for (Player player : players)
-            player.handleEvent(event);
-
-        if (event.type == sf::Event::Closed) 
+    while (window.pollEvent(event)) {
+        switch (event.type) {
+        case sf::Event::Closed:
             window.close();
+            break;
+        default:
+            //state does this later
+            player.handleEvent(event);
+        }
     }
-
 }
 
 void Game::update()
 {
     float deltaTime = deltaClock.restart().asSeconds();
 
-    //Update
-    //for (Player player : players)
-        player.update(deltaTime);
-
+	//state does this later
+    player.update(deltaTime);
 }
 
 void Game::draw()
 {
+    //Begin drawing render texture
+    buffer.clear();
 
-    //Begin drawing process
-    window.clear();
+    //Let the state draw to the buffer later
+    player.draw(buffer);
 
-    //draw
-    //for (Player player : players) 
-        player.draw(window);
-
-    // pygame display flip, i think this flips the buffer!
+    //
+    buffer.display();
+    window.draw(bufferSprite);
     window.display();
-
 }
 
 void Game::run()

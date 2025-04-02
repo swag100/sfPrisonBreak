@@ -1,24 +1,47 @@
 #pragma once
+
 #include "SFML/Graphics.hpp"
+#include "constants.h"
+
 #include "player.h"
 
 class Game {
 private:
-	//IMPORTANT: AMPERSAND IS THERE TO DENOTE IT IS A REFERENCE (akin to python variables)
-	sf::RenderWindow& window;
-	sf::Clock deltaClock;
+	sf::Clock deltaClock; // For delta time
+
+	// -- Window and buffer
+	sf::Vector2u bufferSize{ 
+		constants::BUFFER_WIDTH, 
+		constants::BUFFER_HEIGHT 
+	};
+
+	sf::RenderWindow window{ 
+		sf::VideoMode(
+			bufferSize.x * constants::ZOOM,
+			bufferSize.y * constants::ZOOM
+		), 
+		constants::TITLE, 
+		sf::Style::Close 
+	};
+
+	sf::View view{ 
+		sf::Vector2f(bufferSize) / 2.0f,
+		sf::Vector2f(bufferSize)
+	};
+
+	sf::RenderTexture buffer{};
+	sf::Sprite bufferSprite{};
 
 	//temp
 	//std::vector<Player> players;
-	Player player{28, 28};
+	Player player{ 28, 28 };
 
-	void start();
-
+	// -- Game functions
 	void handleEvents();
 	void update();
 	void draw();
 
 public:
-	Game(sf::RenderWindow& newWindow);
+	Game();
 	void run();
 };
