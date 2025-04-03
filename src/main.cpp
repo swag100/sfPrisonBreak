@@ -1,11 +1,14 @@
+#include "constants.h"
 #include "game.h"
-
-// https://en.sfml-dev.org/forums/index.php?topic=17069.0
 
 int main()
 {
-    //Create and run our game instance
-    Game game;
+    Game game(
+        constants::BUFFER_WIDTH,
+        constants::BUFFER_HEIGHT,
+        constants::TITLE,
+        constants::ZOOM
+    );
     game.run();
 
     return 0;

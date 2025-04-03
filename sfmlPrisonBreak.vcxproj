@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -162,11 +162,13 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\playstate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\playstate.h" />
     <ClInclude Include="src\include\player.h" />
+    <ClInclude Include="src\state.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,28 +1,30 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-#include "constants.h"
 
+#include "statemachine.h"
+#include "state.h"
 #include "player.h"
+
+//Right now, none of these are instantiated. How do we instantiate them, and give them the same values as in the game class?
+// This is why I believe we're getting the _call error things.
+struct GameData {
+	StateMachine* stateMachine;
+	sf::RenderWindow* window;
+	sf::RenderTexture* buffer;
+	sf::View* view;
+};
+
+typedef std::shared_ptr<GameData> GameDataPtr;
 
 class Game {
 private:
 	sf::Clock deltaClock; // For delta time
 
 	// -- Window and buffer
-	sf::Vector2u bufferSize{ 
-		constants::BUFFER_WIDTH, 
-		constants::BUFFER_HEIGHT 
-	};
+	sf::Vector2u bufferSize{};
 
-	sf::RenderWindow window{ 
-		sf::VideoMode(
-			bufferSize.x * constants::ZOOM,
-			bufferSize.y * constants::ZOOM
-		), 
-		constants::TITLE, 
-		sf::Style::Close 
-	};
+	sf::RenderWindow window{};
 
 	sf::View view{ 
 		sf::Vector2f(bufferSize) / 2.0f,
@@ -32,9 +34,9 @@ private:
 	sf::RenderTexture buffer{};
 	sf::Sprite bufferSprite{};
 
-	//temp
-	//std::vector<Player> players;
-	Player player{ 28, 28 };
+	// -- data, contains statemachine, window, buffer, view
+	//GameDataPtr data = std::make_shared<GameData>();
+	StateMachine* stateMachine{};
 
 	// -- Game functions
 	void handleEvents();
@@ -42,6 +44,7 @@ private:
 	void draw();
 
 public:
-	Game();
+	Game(int width, int height, std::string title, int initScale);
+
 	void run();
 };
